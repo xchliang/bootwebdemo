@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>用户列表</h1>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>User Name</th>
+            <th>email</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userPage.content}">
+            <th scope="row" th:text="${user.id}"></th>
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.email}"></td>
+            <td><a th:href="@{delete(userId=${user.id})}">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>
+    </div>
+</div>
+<div>
+    <span>总条数：</span><span th:text="${userPage.totalElements}"></span>
+    <span>总页数：</span><span th:text="${userPage.totalPages}"></span>
+    <span>每页显示：</span><span th:text="${userPage.size}"></span>
+    <span>当前页：</span><span th:text="${userPage.number+1}"></span>
+    <a th:href="@{getUsers(userName=test123123,pageNum=${userPage.number-1},pageSize=${userPage.size})}">上一页</a>
+    <a th:href="@{getUsers(userName=test123123,pageNum=${userPage.number+1},pageSize=${userPage.size})}">下一页</a>
+</div>
+</body>
+</html>
