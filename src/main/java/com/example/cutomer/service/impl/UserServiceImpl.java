@@ -112,8 +112,8 @@ public class UserServiceImpl implements UserService{
 	
 	    };
 	    Sort sort = new Sort(Direction.ASC, "userName");// 排序
-		sort = sort.and(new Sort(Direction.DESC, "baseCreateTimeStr"));
-		Pageable pageable = new PageRequest((pageNum-1)*pageSize, pageSize, sort);
+		sort = sort.and(new Sort(Direction.DESC, "baseCreateTime"));
+		Pageable pageable = new PageRequest(pageNum, pageSize, sort);
 		Page<User> findAll = userRepository.findAll(spec, pageable);
 		//统计总数
 		//long count = userRepository.count(spec);

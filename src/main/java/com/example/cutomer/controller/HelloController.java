@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,25 @@ public class HelloController {
 		System.out.println("size:"+userList.size());
 		modelMap.put("users", userList);
 		return "/user/list";
+	}
+	@RequestMapping("getUsers")
+	public String getUsers(HttpServletRequest request,HttpSession session, ModelMap modelMap,
+			Integer pageNum,Integer pageSize){
+		if(pageNum==null || pageNum<0){
+			pageNum=0;//
+		}
+		if(pageSize==null || pageSize<=0){
+			pageSize=10;
+		}
+		UserVO vo = new UserVO();
+		vo.setUserName("test123123");
+		Page<User> userPage = userService.getUserPage(vo, pageNum, pageSize);
+		if(userPage!=null && userPage.hasContent()){
+			List<User> content = userPage.getContent();
+			System.out.println("size:"+content.size());
+		}
+		modelMap.put("userPage", userPage);
+		return "/user/pageList";
 	}
 	@RequestMapping("delete")
 	public String delete(HttpServletRequest request,HttpSession session, ModelMap modelMap,Long userId){

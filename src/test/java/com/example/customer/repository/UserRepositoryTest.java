@@ -97,7 +97,7 @@ public class UserRepositoryTest {
 	public void testPage() {
 		int pageNum = 0, size = 10;// 页码从0开始
 		Sort sort = new Sort(Direction.ASC, "userName");// 排序
-		sort = sort.and(new Sort(Direction.DESC, "baseCreateTimeStr"));
+		sort = sort.and(new Sort(Direction.DESC, "baseCreateTime"));
 		Pageable pageable = new PageRequest(pageNum, size, sort);
 		// 查询条件
 		User userParam = new User();

@@ -26,7 +26,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 //@EntityScan(basePackages={"com.example.entity", "com.example.cutomer.model", 
 //		"com.example.goods.model"})
-@EnableScheduling//开启定时任务
+
+/*
+ * @EnableScheduling//开启定时任务
+ */
 public class BootwebdemoApplication {
 
 	public static void main(String[] args) {
