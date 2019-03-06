@@ -23,7 +23,8 @@ import com.example.cutomer.service.UserService;
 import com.example.cutomer.vo.UserVO;
 import com.example.util.ConstantUtil;
 
-//@RestController
+//响应结果转换为json
+//@RestController 
 
 @Controller
 @RequestMapping( "/world/" )
