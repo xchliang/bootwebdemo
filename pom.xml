@@ -17,6 +17,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<!-- 打包时跳过测试，即不执行测试程序 -->
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>
@@ -28,6 +30,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<!-- 打包时排除tomcat -->
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -66,7 +69,11 @@
 		<dependency>
 		    <groupId>org.apache.tomcat.embed</groupId>
 		    <artifactId>tomcat-embed-jasper</artifactId>
-		    <!--<scope>provided</scope>-->
+		    <!-- 用provided 
+		   	 	否则打包后，在tomcat启动时会报错：
+		    	java.lang.NoClassDefFoundError: org/apache/tomcat/util/descriptor/tld/TldParser 
+		    -->
+		    <scope>provided</scope>
 		</dependency>
 		<!-- jstl标签库 -->
 		<dependency>
